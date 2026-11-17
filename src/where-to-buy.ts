@@ -1,11 +1,13 @@
 import { emit } from './events.ts';
 import { loadCatalog } from './loader.ts';
 import { offersFor, withUtm } from './offers.ts';
+import { resolveDefaultCatalog } from './resolve.ts';
 import type { Offer } from './types.ts';
 
-const scriptCatalog =
-  (document.currentScript as HTMLScriptElement | null)?.dataset.catalog ??
-  document.querySelector<HTMLScriptElement>('script[data-catalog]')?.dataset.catalog;
+const ownScript =
+  (document.currentScript as HTMLScriptElement | null) ??
+  document.querySelector<HTMLScriptElement>('script[data-catalog], script[data-brand]');
+const scriptCatalog = ownScript ? resolveDefaultCatalog(ownScript) : undefined;
 
 const STYLES = `
 :host { display: block; font-family: var(--wtb-font, system-ui, sans-serif); color: #1a1a1a; }
