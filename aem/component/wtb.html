@@ -1,0 +1,9 @@
+<!--/* Where-to-Buy component. Place in your component's folder as wtb.html.
+       Dialog fields: productId (text), catalogPath (pathfield rooted at /content/dam). */-->
+<sly data-sly-use.clientlib="core/wcm/components/commons/v1/templates/clientlibs.html"
+     data-sly-call="${clientlib.js @ categories='wtb.widget', async=true}"/>
+<where-to-buy data-sly-test="${properties.productId && properties.catalogPath}"
+              product="${properties.productId}"
+              catalog="${properties.catalogPath}"></where-to-buy>
+<div data-sly-test="${!(properties.productId && properties.catalogPath) && wcmmode.edit}"
+     class="cq-placeholder" data-emptytext="Where to Buy: set a product ID and catalog"></div>
