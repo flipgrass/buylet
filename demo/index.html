@@ -1,0 +1,22 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Where to Buy demo</title>
+  <style>
+    /* Hostile host styles: the widget's Shadow DOM must be unaffected. */
+    a { display: none !important; }
+    * { color: red !important; }
+    body { font-family: serif; max-width: 640px; margin: 2rem auto; }
+  </style>
+  <script>window.dataLayer = [];</script>
+  <script async src="/dist/wtb.js" data-catalog="/demo/catalog.json"></script>
+</head>
+<body>
+  <h1>Oat Spread 250g</h1>
+  <where-to-buy id="good" product="sku-1"></where-to-buy>
+  <h2>Broken catalog</h2>
+  <where-to-buy id="broken" product="sku-1" catalog="/missing.json"></where-to-buy>
+</body>
+</html>
