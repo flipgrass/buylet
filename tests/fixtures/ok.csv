@@ -1,0 +1,2 @@
+product_id,product_name,retailer,url,price,in_stock
+p1,Oat Spread,Acme,https://acme.test/p1,4.99,yes

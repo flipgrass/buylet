@@ -1,0 +1,19 @@
+{
+  "products": [
+    { "id": "sku-1", "name": "Oat Spread 250g" },
+    { "id": "sku-2", "name": "Berry Jam 340g" }
+  ],
+  "retailers": [
+    { "id": "acme-mart", "name": "Acme Mart" },
+    { "id": "beta-shop", "name": "Beta Shop" },
+    { "id": "gamma-grocer", "name": "Gamma Grocer" },
+    { "id": "delta-direct", "name": "Delta Direct" }
+  ],
+  "offers": [
+    { "productId": "sku-1", "retailerId": "acme-mart", "url": "https://acme.example/oat-spread", "price": 4.99, "currency": "USD", "inStock": false },
+    { "productId": "sku-1", "retailerId": "beta-shop", "url": "https://beta.example/oat-spread?ref=demo", "price": 5.25, "currency": "USD", "inStock": true },
+    { "productId": "sku-1", "retailerId": "gamma-grocer", "url": "https://gamma.example/oat-spread", "inStock": true },
+    { "productId": "sku-1", "retailerId": "delta-direct", "url": "https://delta.example/oat-spread", "price": 4.75, "currency": "USD", "inStock": false },
+    { "productId": "sku-2", "retailerId": "acme-mart", "url": "https://acme.example/berry-jam", "price": 3.5, "currency": "USD", "inStock": true }
+  ]
+}

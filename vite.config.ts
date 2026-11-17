@@ -8,7 +8,6 @@ export default defineConfig({
       name: 'WTB',
       fileName: () => 'wtb.js',
     },
-    minify: 'esbuild',
     target: 'es2020',
   },
 });
