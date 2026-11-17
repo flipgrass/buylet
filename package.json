@@ -8,7 +8,11 @@
     "test": "vitest run",
     "e2e": "npm run build && playwright test",
     "validate": "node scripts/validate.ts",
-    "csv-to-json": "node scripts/csv-to-json.ts"
+    "csv-to-json": "node scripts/csv-to-json.ts",
+    "build:admin": "vite build --config admin/vite.config.ts",
+    "build:all": "npm run build && npm run build:admin",
+    "start": "node server/index.ts",
+    "e2e:platform": "npm run build:all && playwright test --config playwright.platform.config.ts"
   },
   "devDependencies": {
     "@playwright/test": "^1.65.1",

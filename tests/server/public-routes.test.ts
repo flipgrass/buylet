@@ -16,6 +16,7 @@ describe('public catalog', () => {
     expect(res.status).toBe(200);
     expect(res.headers.get('access-control-allow-origin')).toBe('*');
     expect(res.headers.get('cache-control')).toContain('max-age=60');
+    expect(res.headers.get('cross-origin-resource-policy')).toBe('cross-origin');
     expect(res.headers.get('set-cookie')).toBeNull();
     expect(validateCatalog(await res.json())).toEqual([]);
   });

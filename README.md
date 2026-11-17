@@ -1,3 +1,32 @@
+# Where-to-Buy Platform
+
+Multi-brand platform around the widget: brands sign up, enter or upload their products and retailers, and embed the widget with one snippet.
+
+```sh
+npm install
+npm run build:all     # widget (dist/wtb.js) + admin UI (admin/dist)
+npm start             # http://localhost:3000   (PORT, DB_PATH=data/wtb.db, NODE_ENV=production for Secure cookies)
+```
+
+1. Open the app, **Sign up** (creates your brand), then add **Retailers** and **Products**.
+2. **Offers**: pick a product and fill in each retailer's buy URL, price, currency and in-stock flag. Or use **Import** to upload a CSV (preview shows row-level errors; nothing is written unless the whole file is valid).
+3. **Embed**: copy the snippet. It points at your brand's public catalog:
+
+```html
+<script async src="https://YOUR-HOST/wtb.js" data-brand="your-brand"></script>
+<where-to-buy product="sku-1"></where-to-buy>
+```
+
+`data-catalog="/path/catalog.json"` still works and takes precedence (use it on AEM with a DAM-hosted file).
+
+**Security model:** passwords hashed with scrypt; sessions are httpOnly SameSite=Lax cookies and only a hash of the token is stored; mutating requests need a CSRF header and a same-origin `Origin`; login is rate-limited; every query is scoped to the signed-in brand (tested). The public catalog and `/wtb.js` are intentionally open (CORS `*`, CORP `cross-origin`).
+
+**Not included:** billing, multiple users per brand, password reset email, click-analytics storage, image upload (images/logos are URLs), cloud deployment. Run behind HTTPS in production (a reverse proxy that sets `x-forwarded-proto`).
+
+**Tests:** `npm test` (unit + API, in-memory SQLite), `npm run e2e` (widget), `npm run e2e:platform` (full stack in Chrome).
+
+---
+
 # Where-to-Buy Widget
 
 Embeddable "where to buy" locator: shoppers see which retailers carry a product and click through to buy. Driven by a manually maintained catalog, deployable on AEM or any site. No runtime dependencies; ~2.6 kB gzipped.

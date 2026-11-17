@@ -32,6 +32,11 @@ export function createApp(db: DatabaseSync, opts: AppOptions = {}): Hono<Env> {
   const failures = new Map<string, { count: number; resetAt: number }>();
   let dummyHash: Promise<string> | undefined;
 
+  app.use('*', async (c, next) => {
+    await next();
+    c.res.headers.set('x-content-type-options', 'nosniff');
+  });
+
   // Same-origin guard for state-changing requests.
   app.use('/api/*', async (c, next) => {
     if (c.req.method !== 'GET' && c.req.method !== 'HEAD') {
@@ -216,6 +221,7 @@ export function createApp(db: DatabaseSync, opts: AppOptions = {}): Hono<Env> {
     const etag = `"${createHash('sha1').update(body).digest('hex')}"`;
     const headers = {
       'access-control-allow-origin': '*',
+      'cross-origin-resource-policy': 'cross-origin',
       'cache-control': 'public, max-age=60',
       'x-content-type-options': 'nosniff',
       etag,

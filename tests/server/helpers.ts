@@ -11,7 +11,10 @@ export function setup() {
 export class Client {
   cookie = '';
   csrf = '';
-  constructor(private app: Hono<any>) {}
+  app: Hono<any>;
+  constructor(app: Hono<any>) {
+    this.app = app;
+  }
 
   async req(method: string, path: string, body?: unknown, extra: Record<string, string> = {}) {
     const headers: Record<string, string> = { ...extra };
