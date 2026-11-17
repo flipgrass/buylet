@@ -1,0 +1,21 @@
+{
+  "name": "where-to-buy",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "vite build && node scripts/check-size.ts && node scripts/copy-to-aem.ts",
+    "test": "vitest run",
+    "e2e": "npm run build && playwright test",
+    "validate": "node scripts/validate.ts",
+    "csv-to-json": "node scripts/csv-to-json.ts"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.65.1",
+    "@types/node": "^26.6.6",
+    "jsdom": "^31.0.1",
+    "typescript": "^7.0.2",
+    "vite": "^8.3.8",
+    "vitest": "^5.1.0"
+  }
+}
